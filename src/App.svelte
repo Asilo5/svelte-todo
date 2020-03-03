@@ -51,6 +51,13 @@
     todos = todos.filter((todo)=> todo.id !== id);
   }
 
+  const checkAllTodos = (e) => {
+	todos.forEach((todo)=> todo.completed = e.target.checked);
+	todos = todos;
+  }
+
+  $: todosRemaining = todos.filter((todo) => !todo.completed).length;
+
 </script>
 
 <main>
@@ -75,8 +82,8 @@
  </section>
 
   <section class='extra-container'>
-     <div><label><input type='checkbox' /> Check All </label></div>
-	 <p>3 times left</p>
+     <div><label><input type='checkbox' on:change={checkAllTodos} /> Check All </label></div>
+	 <p>{todosRemaining} times left</p>
   </section>
 
   <section class='extra container'>
