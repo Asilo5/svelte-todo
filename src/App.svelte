@@ -64,10 +64,10 @@
  {#each todos as todo}
 	<section class='todo-item'> 
 		<section class='todo-item-left'>
-			<input type='checkbox' />
-			<p class='todo-item-label'>{todo.title}</p>
+			<input type='checkbox' bind:checked={todo.completed}/>
+			<p class='todo-item-label' class:completed={todo.completed}>{todo.title}</p>
 		</section>
-		<p class='remove-item' on:click={deleteTodo(todo.id)}>
+		<p class='remove-item' on:click={()=>deleteTodo(todo.id)}>
 			&times;
 		</p>
 	</section>
@@ -81,8 +81,14 @@
 
   <section class='extra container'>
      <section>
-	 
+	   <button>All</button>
+	   <button>Active</button>
+	   <button>Completed</button>
 	 </section>
+  </section>
+
+  <section>
+    <button>Clear Completed</button>
   </section>
 
 </main>
@@ -100,6 +106,10 @@
 			display: flex;
 			justify-content: space-between;
 			width: 50%;
+	}
+
+	.completed {
+		text-decoration: line-through;
 	}
 	
 </style>
