@@ -1,4 +1,9 @@
 <script>
+
+  const ENTER_KEY = 13;
+  const ESCAPE_KEY = 27;
+
+  let newTodo = '';
 	
   let todos = [
 	  {
@@ -25,13 +30,36 @@
 		  title: 'Get haircut',
 		  editing: false
 	  }
-  ]
+  ];
+
+
+  const addTodo = (e) => {
+    if(e.which === ENTER_KEY){
+       todos.push({
+		  id: todos.length + 1,
+		  completed: false,
+		  title: newTodo,
+		  editing: false
+	   });
+
+	   todos = todos;
+	   newTodo = '';
+	}
+  }
+
+  const deleteTodo = (id) => {
+    todos = todos.filter((todo)=> todo.id !== id);
+  }
 
 </script>
 
 <main>
   <section class='container'>
-	<input type='text' class='todo-input' placeholder='What needs to be done' />
+	<input bind:value={newTodo} 
+	      on:keydown={addTodo}
+	      type='text' 
+		  class='todo-input' 
+		  placeholder='What needs to be done' />
 
  {#each todos as todo}
 	<section class='todo-item'> 
@@ -39,7 +67,7 @@
 			<input type='checkbox' />
 			<p class='todo-item-label'>{todo.title}</p>
 		</section>
-		<p class='remove-item'>
+		<p class='remove-item' on:click={deleteTodo(todo.id)}>
 			&times;
 		</p>
 	</section>
@@ -72,6 +100,6 @@
 			display: flex;
 			justify-content: space-between;
 			width: 50%;
-		}
+	}
 	
 </style>
