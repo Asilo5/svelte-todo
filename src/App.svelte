@@ -1,32 +1,77 @@
 <script>
-	export let name;
+	
+  let todos = [
+	  {
+		  id: 1,
+		  completed: false,
+		  title: 'Make Svelte project practice',
+		  editing: false
+	  },
+	  {
+		  id: 2,
+		  completed: false,
+		  title: 'Study for mock interview interview',
+		  editing: false
+	  },
+	  {
+		  id: 3,
+		  completed: false,
+		  title: 'Make Svelte project for school',
+		  editing: false
+	  },
+	  {
+		  id: 4,
+		  completed: false,
+		  title: 'Get haircut',
+		  editing: false
+	  }
+  ]
+
 </script>
 
 <main>
-	<h1>Hello me llamo es {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <section class='container'>
+	<input type='text' class='todo-input' placeholder='What needs to be done' />
+
+ {#each todos as todo}
+	<section class='todo-item'> 
+		<section class='todo-item-left'>
+			<input type='checkbox' />
+			<p class='todo-item-label'>{todo.title}</p>
+		</section>
+		<p class='remove-item'>
+			&times;
+		</p>
+	</section>
+   {/each}
+ </section>
+
+  <section class='extra-container'>
+     <div><label><input type='checkbox' /> Check All </label></div>
+	 <p>3 times left</p>
+  </section>
+
+  <section class='extra container'>
+     <section>
+	 
+	 </section>
+  </section>
+
 </main>
 
 <style type="text/scss">
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+	.todo-item {
+		display: flex;
+		justify-content: space-between;
+		width: 40%;
+		background-color: aquamarine;
+		margin: 10px;
 	}
 
-	h1 {
-		color: #ff3e00;
-		font-size: 4em;
-		font-weight: 100;
-		&:hover {
-          color: green;
+	.todo-item-left {
+			display: flex;
+			justify-content: space-between;
+			width: 50%;
 		}
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+	
 </style>
